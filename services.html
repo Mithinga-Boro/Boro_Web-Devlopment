@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Our Services - Custom website development for businesses">
+    <title>Our Services | Boro Web-Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== COMPLETE CSS FOR SERVICES PAGE ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #00bcd4;
+            --accent: #f50057;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --light-text: #ffffff;
+            --gray: #2d2d2d;
+            --border: #333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ====== Typography ====== */
+        h1, h2, h3, h4, h5 {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light-text);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        /* ====== Header & Navigation ====== */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ====== Buttons ====== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #008ba3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #008ba3, var(--secondary));
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+        }
+
+        /* ====== Services Page Specific Styles ====== */
+        .services {
+            padding: 4rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-circle {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ====== Responsive Design ====== */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .services {
+                padding: 2rem 0;
+            }
+        }
+
+        /* ====== List Styles ====== */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-circle">B.W</div>
+                <h1>Boro Web-Development</h1>
+            </div>
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="gallery.html">Portfolio</a></li>
+                    <li><a href="order-step1.html" class="btn">Order Website</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Services Content -->
+    <section class="services">
+        <div class="container">
+            <h1>Our Web Development Services</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem;">We offer a wide range of website development services tailored to your business needs. Each website is custom-built to help you achieve your online goals.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Custom Website Development</h3>
+                    <p>Fully customized websites built from scratch to match your brand identity and business requirements.</p>
+                    <ul>
+                        <li>Unique design</li>
+                        <li>Responsive layout</li>
+                        <li>SEO optimized</li>
+                        <li>Fast loading</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Business Websites</h3>
+                    <p>Professional websites for businesses to establish online presence, showcase services, and generate leads.</p>
+                    <ul>
+                        <li>Service pages</li>
+                        <li>About company</li>
+                        <li>Contact forms</li>
+                        <li>Testimonials</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <h3>Shop Website</h3>
+                    <p>E-commerce solutions for retail businesses to sell products online with secure payment integration.</p>
+                    <ul>
+                        <li>Product catalog</li>
+                        <li>Shopping cart</li>
+                        <li>Payment gateway</li>
+                        <li>Order management</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3>PG / Hostel Website</h3>
+                    <p>Websites for PG accommodations and hostels to showcase facilities, room availability, and booking.</p>
+                    <ul>
+                        <li>Room details</li>
+                        <li>Facilities showcase</li>
+                        <li>Booking system</li>
+                        <li>Location maps</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Restaurant Website</h3>
+                    <p>Attractive websites for restaurants to display menus, accept online orders, and manage reservations.</p>
+                    <ul>
+                        <li>Digital menu</li>
+                        <li>Online ordering</li>
+                        <li>Table reservation</li>
+                        <li>Gallery of dishes</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Portfolio Website</h3>
+                    <p>Personal portfolio websites for professionals, artists, and freelancers to showcase their work.</p>
+                    <ul>
+                        <li>Project showcase</li>
+                        <li>Skills display</li>
+                        <li>Resume/CV section</li>
+                        <li>Contact options</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Landing Pages</h3>
+                    <p>High-conversion landing pages for marketing campaigns, product launches, and lead generation.</p>
+                    <ul>
+                        <li>Single page focus</li>
+                        <li>Call-to-action buttons</li>
+                        <li>Lead capture forms</li>
+                        <li>Conversion optimized</li>
+                    </ul>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsive Design</h3>
+                    <p>All our websites are fully responsive and work perfectly on all devices - desktop, tablet, and mobile.</p>
+                    <ul>
+                        <li>Mobile-first approach</li>
+                        <li>Touch-friendly navigation</li>
+                        <li>Optimized images</li>
+                        <li>Fast mobile loading</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 4rem;">
+                <h2>Ready to Get Started?</h2>
+                <p style="margin-bottom: 2rem;">Choose the service that fits your needs, or contact us for a custom solution.</p>
+                <a href="order-step1.html" class="btn btn-large">Order Your Website Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-circle">B</div>
+                        <h3>Boro Web-Development</h3>
+                    </div>
+                    <p>Professional custom website development for businesses of all sizes. We create responsive, modern websites that drive growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> mithingaboro638@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9387804914</p>
+                    <p><i class="fas fa-user-graduate"></i> Freelancer & CSE Student</p>
+                    <p><i class="fas fa-policy"></i> Demo First | 50% Advance | 50% After Delivery</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Boro Web-Development. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Boro Web-Development - Freelancer & Computer Science Student">
+    <title>About Us | Boro Web-Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== COMPLETE CSS FOR ABOUT PAGE ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #00bcd4;
+            --accent: #f50057;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --light-text: #ffffff;
+            --gray: #2d2d2d;
+            --border: #333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ====== Typography ====== */
+        h1, h2, h3, h4, h5 {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light-text);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        /* ====== Header & Navigation ====== */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ====== Buttons ====== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #008ba3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #008ba3, var(--secondary));
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+        }
+
+        /* ====== About Page Specific Styles ====== */
+        .about-content {
+            padding: 4rem 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin: 3rem 0;
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .about-card {
+            background: var(--dark-card);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .policy-steps {
+            margin: 2rem 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-circle {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ====== Responsive Design ====== */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .about-content {
+                padding: 2rem 0;
+            }
+        }
+
+        /* ====== List Styles ====== */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-circle">B.W</div>
+                <h1>Boro Web-Development</h1>
+            </div>
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" class="active">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Portfolio</a></li>
+                    <li><a href="order-step1.html" class="btn">Order Website</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <h1>About Boro Web-Development</h1>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h2><i class="fas fa-user"></i> About Me</h2>
+                    <p>Hello! I'm the founder of Boro Web-Development, a passionate freelancer and Computer Science & Engineering student.</p>
+                    <p>With a strong foundation in both theoretical computer science concepts and practical web development skills, I bridge the gap between academic knowledge and real-world application.</p>
+                    <p>My mission is to help businesses establish a strong online presence with modern, responsive, and custom websites that drive growth and engagement.</p>
+                </div>
+                
+                <div class="about-card">
+                    <h2><i class="fas fa-laptop-code"></i> What I Build</h2>
+                    <p>I specialize in creating:</p>
+                    <ul>
+                        <li>Modern, responsive websites</li>
+                        <li>Custom websites</li>
+                        <li>Business-oriented solutions</li>
+                        <li>SEO-friendly designs</li>
+                        <li>Mobile-first experiences</li>
+                    </ul>
+                    <p>Every website is built with clean code, best practices and a focus on user experience.</p>
+                </div>
+            </div>
+            
+            <div class="about-card" style="margin-top: 2rem;">
+                <h2><i class="fas fa-handshake"></i> Our Policy</h2>
+                <div class="policy-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <h3>Demo First Approach</h3>
+                            <p>You will first see a demo website based on your requirements. No payment is required at this stage.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <h3>Approval & 50% Advance</h3>
+                            <p>If you approve the demo website, a 50% advance payment is required to begin the final development.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <h3>Final Delivery & 50% Payment</h3>
+                            <p>After final website delivery and your approval, the remaining 50% payment is completed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-card" style="margin-top: 2rem;">
+                <h2><i class="fas fa-money-bill-wave"></i> Pricing Explanation</h2>
+                <p>Our pricing is transparent and depends on your specific requirements:</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+                    <div>
+                        <h3><i class="fas fa-file"></i> Based on Pages</h3>
+                        <p>The number of pages your website needs affects the total cost. More pages = more development time.</p>
+                    </div>
+                    <div>
+                        <h3><i class="fas fa-paint-brush"></i> Design Complexity</h3>
+                        <p>Simple designs cost less than complex, custom designs with advanced animations and interactions.</p>
+                    </div>
+                    <div>
+                        <h3><i class="fas fa-cogs"></i> Features & Functionality</h3>
+                        <p>Basic features are included in all packages. Advanced features like e-commerce, booking systems, etc., add to the cost.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 1.5rem; padding: 1rem; background: rgba(26, 115, 232, 0.1); border-radius: 5px;">
+                    <strong>Note:</strong> Basic websites start at affordable rates, while advanced custom websites with complex features are priced higher. Contact us for a personalized quote!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-circle">B</div>
+                        <h3>Boro Web-Development</h3>
+                    </div>
+                    <p>Professional custom website development for businesses of all sizes. We create responsive, modern websites that drive growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> mithingaboro638@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9387804914</p>
+                    <p><i class="fas fa-user-graduate"></i> Freelancer & CSE Student</p>
+                    <p><i class="fas fa-policy"></i> Demo First | 50% Advance | 50% After Delivery</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Boro Web-Development. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

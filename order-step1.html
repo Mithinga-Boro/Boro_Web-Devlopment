@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order Your Website - Step 1: Client Details">
+    <title>Order Website - Step 1 | Boro Web-Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== COMPLETE CSS FOR ORDER STEP 1 ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d47a1;
+            --secondary: #00bcd4;
+            --accent: #f50057;
+            --dark-bg: #121212;
+            --dark-card: #1e1e1e;
+            --dark-text: #e0e0e0;
+            --light-text: #ffffff;
+            --gray: #2d2d2d;
+            --border: #333;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--dark-bg);
+            background-image: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ====== Typography ====== */
+        h1, h2, h3, h4, h5 {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--light-text);
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        /* ====== Header & Navigation ====== */
+        header {
+            background-color: rgba(30, 30, 30, 0.95);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        .logo-circle {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--light-text);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ====== Buttons ====== */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary), #008ba3);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #008ba3, var(--secondary));
+        }
+
+        .btn-large {
+            padding: 1.2rem 3rem;
+            font-size: 1.3rem;
+        }
+
+        /* ====== Order Form Specific Styles ====== */
+        .order-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0;
+        }
+
+        .order-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .order-progress::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray);
+            z-index: 1;
+        }
+
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            background: var(--gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: var(--dark-text);
+            font-weight: bold;
+            border: 3px solid var(--dark-bg);
+        }
+
+        .progress-step.active .step-circle {
+            background: var(--primary);
+            color: white;
+        }
+
+        .progress-step.completed .step-circle {
+            background: var(--success);
+            color: white;
+        }
+
+        .order-form {
+            background: var(--dark-card);
+            padding: 3rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light-text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--dark-bg);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--light-text);
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background-color: rgba(18, 18, 18, 0.95);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .logo-circle {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+
+        .footer-links h4,
+        .footer-contact h4 {
+            color: var(--light-text);
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ====== Responsive Design ====== */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .order-form {
+                padding: 2rem;
+            }
+            
+            .form-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+            
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .order-container {
+                padding: 2rem 0;
+            }
+            
+            .order-progress {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2rem;
+            }
+            
+            .order-progress::before {
+                display: none;
+            }
+            
+            .progress-step {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                text-align: left;
+            }
+            
+            .step-circle {
+                margin: 0;
+            }
+        }
+
+        /* ====== Placeholder Styling ====== */
+        ::placeholder {
+            color: #888;
+            opacity: 1;
+        }
+
+        :-ms-input-placeholder {
+            color: #888;
+        }
+
+        ::-ms-input-placeholder {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-circle">B.W</div>
+                <h1>Boro Web-Development</h1>
+            </div>
+            <button class="mobile-toggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="gallery.html">Portfolio</a></li>
+                    <li><a href="order-step1.html" class="btn active">Order Website</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Order Form Step 1 -->
+    <section class="order-container">
+        <div class="container">
+            <h1>Order Your Custom Website</h1>
+            <p style="margin-bottom: 2rem;">Step 1 of 3: Please provide your basic details so we can get in touch with you.</p>
+            
+            <!-- Progress Steps -->
+            <div class="order-progress">
+                <div class="progress-step active">
+                    <div class="step-circle">1</div>
+                    <p>Client Details</p>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">2</div>
+                    <p>Requirements</p>
+                </div>
+                <div class="progress-step">
+                    <div class="step-circle">3</div>
+                    <p>Final Details</p>
+                </div>
+            </div>
+            
+            <form class="order-form" action="order-step2.html" method="GET">
+                <h2><i class="fas fa-user"></i> Your Basic Information</h2>
+                <p style="margin-bottom: 2rem;">Please fill in your contact details accurately. We'll use this information to contact you regarding your website order.</p>
+                
+                <div class="form-group">
+                    <label for="fullname">Full Name *</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required placeholder="yourname@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+91 XXXXXXXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Full Address *</label>
+                    <textarea id="address" name="address" rows="3" required placeholder="Enter your complete address including city, state, and pin code"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="business">Business/Organization Name (if any)</label>
+                    <input type="text" id="business" name="business" placeholder="Name of your business or organization">
+                </div>
+                
+                <div class="form-navigation">
+                    <a href="index.html" class="btn btn-secondary">Back to Home</a>
+                    <button type="submit" class="btn">Next Step: Website Requirements <i class="fas fa-arrow-right"></i></button>
+                </div>
+                
+                <p style="margin-top: 2rem; font-size: 0.9rem; color: #aaa;">
+                    <i class="fas fa-shield-alt"></i> Your information is secure and will only be used to contact you regarding your website order.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-circle">B.W</div>
+                        <h3>Boro Web-Development</h3>
+                    </div>
+                    <p>Professional custom website development for businesses of all sizes. We create responsive, modern websites that drive growth.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Portfolio</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> mithingaboro638@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +91 9387804914</p>
+                    <p><i class="fas fa-user-graduate"></i> Freelancer & CSE Student</p>
+                    <p><i class="fas fa-policy"></i> Demo First | 50% Advance | 50% After Delivery</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 Boro Web-Development. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
